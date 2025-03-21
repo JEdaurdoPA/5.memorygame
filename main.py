@@ -79,6 +79,17 @@ def draw():
         color('green')
         write('¡Juego terminado!', font=('Arial', 20, 'bold'))
 
+    up()
+    goto(-180, 180)
+    color('black')
+    write(f'Taps: {state["taps"]}', font=('Arial', 16, 'normal'))
+
+    if not any(hide):
+        up()
+        goto(-50, 0)
+        color('green')
+        write('¡Juego terminado!', font=('Arial', 20, 'bold'))
+
     update()
     ontimer(draw, 100)
 
