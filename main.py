@@ -3,7 +3,7 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list("ABCDEFGHIJKLMNOPQRSTUVWXYZÑ123456") * 2 #Ocupe letras y numeros para poder mejorar el entendimiento 
 state = {'mark': None, 'taps': 0}  # Contador de taps
 hide = [True] * 64
 
@@ -47,6 +47,7 @@ def tap(x, y):
 
 def draw():
     "Draw image and tiles."
+    
     clear()
     goto(0, 0)
     shape(car)
@@ -63,9 +64,20 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 12, y+11)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark] ,font=('Arial', 30, 'normal'))
+
+    up()
+    goto(-180, 180)
+    color('black')
+    write(f'Taps: {state["taps"]}', font=('Arial', 16, 'normal'))
+
+    if not any(hide):
+        up()
+        goto(-50, 0)
+        color('green')
+        write('¡Juego terminado!', font=('Arial', 20, 'bold'))
 
     up()
     goto(-180, 180)
